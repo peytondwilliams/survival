@@ -194,7 +194,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-0.5, 2.08165e-12)
 script = ExtResource("1_5flud")
 
@@ -216,3 +216,13 @@ zoom = Vector2(4, 4)
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="IFrameTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]

@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 60.0
 
 var health = 10
+var attack = 5
 
 func init(new_health):
 	health = new_health
@@ -22,6 +23,11 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider.is_in_group("player"):
+			collider.take_damage(attack)
 
 func take_damage(hurt_damage):
 	health -= hurt_damage

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccxhn6eacmt1i"]
+[gd_scene load_steps=5 format=3 uid="uid://ccxhn6eacmt1i"]
 
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_25sjl"]
 [ext_resource type="PackedScene" uid="uid://kmvhcp42g0nt" path="res://objects/campfire.tscn" id="1_vk8wx"]
 [ext_resource type="PackedScene" uid="uid://dohprykl7djo6" path="res://mobs/enemy_1.tscn" id="3_0xr55"]
+[ext_resource type="AudioStream" uid="uid://taheeefak81d" path="res://art/Quantum Loop.wav" id="4_mxbph"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -28,5 +29,9 @@ position = Vector2(73, 60)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mxbph")
+autoplay = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

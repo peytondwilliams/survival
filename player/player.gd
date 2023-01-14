@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
+signal health_changed(change)
+
 const SPEED = 100.0
 const SPEAR = preload("res://weapons/spear.tscn")
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+const DAGGER = preload("res://weapons/dagger.tscn")
 
+
+var health = 100
 
 func _physics_process(delta):
 	var horz_dir = Input.get_axis("action_left", "action_right")
@@ -33,8 +36,24 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("action_spear") and $AttackCooldown.is_stopped():
 		$AttackCooldown.start()
-		var spear = SPEAR.instantiate()
-		add_child(spear)
+		#var spear = SPEAR.instantiate()
+		var dagger = DAGGER.instantiate()
+		#add_child(spear)
+		add_child(dagger)
 
 
 	move_and_slide()
+
+func take_damage(hurt_damage):
+	if $IFrameTimer.is_stopped():
+		$IFrameTimer.start()
+		health -= hurt_damage
+		emit_signal("health_changed", hurt_damage)
+
+
+
+func _on_heal_timer_timeout():
+	if health < 100:
+		health += 1
+		emit_signal("health_changed", -1)
+
