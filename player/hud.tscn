@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://iq5kiokq5hmu"]
+
+[ext_resource type="Script" path="res://player/hud.gd" id="1_ejpua"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ejpua")
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "20:00"
+horizontal_alignment = 1
+
+[node name="TimeLeftTimer" type="Timer" parent="."]
+wait_time = 1200.0
+one_shot = true
+autostart = true

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqsrqt6nk0rrj"]
+
+[ext_resource type="Script" path="res://levels/main.gd" id="1_sc4lj"]
+[ext_resource type="PackedScene" uid="uid://ccxhn6eacmt1i" path="res://levels/level_1.tscn" id="2_8x0gf"]
+[ext_resource type="PackedScene" uid="uid://iq5kiokq5hmu" path="res://player/hud.tscn" id="3_j6ux3"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_sc4lj")
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 1200.0
+one_shot = true
+
+[node name="Level1" parent="." instance=ExtResource("2_8x0gf")]
+
+[node name="HUD" parent="." instance=ExtResource("3_j6ux3")]
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

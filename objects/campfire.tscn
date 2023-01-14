@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://kmvhcp42g0nt"]
+
+[ext_resource type="Texture2D" uid="uid://4i5q5uc033fy" path="res://art/Campfire36.png" id="1_a2aqn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwc42"]
+radius = 4.0
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjomg"]
+atlas = ExtResource("1_a2aqn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow1pn"]
+atlas = ExtResource("1_a2aqn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yoyk"]
+atlas = ExtResource("1_a2aqn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v78m"]
+atlas = ExtResource("1_a2aqn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dom2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjomg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow1pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yoyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v78m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Campfire" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wwc42")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -9)
+frames = SubResource("SpriteFrames_4dom2")
+playing = true
