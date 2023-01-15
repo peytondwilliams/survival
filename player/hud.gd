@@ -11,6 +11,7 @@ var inventory = {
 func _ready():
 	Globals.player.health_changed.connect(_on_health_change)
 	Globals.player.inventory_changed.connect(_on_inventory_change)
+	Globals.player.selected_loot_changed.connect(_on_select_change)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,4 +25,7 @@ func _on_health_change(change):
 func _on_inventory_change(change):
 	inventory = change
 	$InventoryLabel.text = "wood: %d\nstone: %d\nore:     %d" % [inventory["wood"], inventory["stone"], inventory["ore"]]
+
+func _on_select_change(change):
+	$LootSelectLabel.text = change
 

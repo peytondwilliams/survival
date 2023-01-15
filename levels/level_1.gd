@@ -31,3 +31,7 @@ func _on_spawn_timer_timeout():
 
 	new_enemy.position = spawn_pos
 
+
+func _on_campfire_extinguish():
+	#lose game
+	pass # Replace with function body.

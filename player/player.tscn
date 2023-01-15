@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://cqficjgr64pey"]
+[gd_scene load_steps=36 format=3 uid="uid://cqficjgr64pey"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_5flud"]
 [ext_resource type="Texture2D" uid="uid://dq5y0ghe4m67" path="res://art/RPGMCharacter_v1.0/_down idle.png" id="1_ci7op"]
 [ext_resource type="Texture2D" uid="uid://dkxfu71r0axle" path="res://art/RPGMCharacter_v1.0/_down walk.png" id="2_euh1n"]
 [ext_resource type="Texture2D" uid="uid://bmp4didg5j2ft" path="res://art/RPGMCharacter_v1.0/_side walk.png" id="3_mbtao"]
 [ext_resource type="Texture2D" uid="uid://dihoid4gssc1p" path="res://art/RPGMCharacter_v1.0/_up walk.png" id="5_ptqws"]
+[ext_resource type="Texture2D" uid="uid://cakgi0k70qj6u" path="res://art/light2.jpeg" id="6_0wsxf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_de78a"]
 radius = 5.0
@@ -197,6 +198,67 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3ove"]
 radius = 13.5
 
+[sub_resource type="Animation" id="Animation_eghmc"]
+resource_name = "glow_reduce"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLight:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowLight:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.35]
+}
+
+[sub_resource type="Animation" id="Animation_2lr81"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLight:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlowLight:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ik1sa"]
+_data = {
+"RESET": SubResource("Animation_2lr81"),
+"glow_reduce": SubResource("Animation_eghmc")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-0.5, 2.08165e-12)
 script = ExtResource("1_5flud")
@@ -206,7 +268,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("CapsuleShape2D_de78a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(2.08165e-12, -15)
 frames = SubResource("SpriteFrames_qymjt")
 animation = &"idle"
 playing = true
@@ -231,8 +293,27 @@ one_shot = true
 [node name="PickupArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0.5, -2.08165e-12)
 shape = SubResource("CircleShape2D_v3ove")
+
+[node name="GlowTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="GlowLight" type="PointLight2D" parent="."]
+enabled = false
+color = Color(0.929412, 0.443137, 0.282353, 1)
+energy = 3.0
+texture = ExtResource("6_0wsxf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ik1sa")
+}
 
 [connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
 [connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
+[connection signal="timeout" from="GlowTimer" to="." method="_on_glow_timer_timeout"]

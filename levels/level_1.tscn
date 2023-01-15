@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dbr1niy42rvmm" path="res://objects/boulder.tscn" id="9_6qt0t"]
 
 [node name="Level1" type="Node2D"]
+modulate = Color(0.419608, 0.419608, 0.419608, 1)
 y_sort_enabled = true
 script = ExtResource("1_25sjl")
 
@@ -66,4 +67,5 @@ position = Vector2(625, 410)
 [node name="Boulder3" parent="." instance=ExtResource("9_6qt0t")]
 position = Vector2(601, 185)
 
+[connection signal="extinguish" from="Campfire" to="." method="_on_campfire_extinguish"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

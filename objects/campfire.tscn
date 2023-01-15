@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://kmvhcp42g0nt"]
+[gd_scene load_steps=11 format=3 uid="uid://kmvhcp42g0nt"]
 
 [ext_resource type="Texture2D" uid="uid://4i5q5uc033fy" path="res://art/Campfire36.png" id="1_a2aqn"]
+[ext_resource type="Script" path="res://objects/campfire.gd" id="1_hl8vp"]
+[ext_resource type="Texture2D" uid="uid://cakgi0k70qj6u" path="res://art/light2.jpeg" id="3_wpcim"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwc42"]
 radius = 4.0
@@ -42,7 +44,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Campfire" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dypw"]
+radius = 13.0
+height = 34.0
+
+[node name="Campfire" type="StaticBody2D" groups=["fire"]]
+script = ExtResource("1_hl8vp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -53,3 +60,25 @@ shape = SubResource("CapsuleShape2D_wwc42")
 position = Vector2(1, -9)
 frames = SubResource("SpriteFrames_4dom2")
 playing = true
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2dypw")
+
+[node name="WoodBurnTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -5)
+color = Color(0.929412, 0.443137, 0.282353, 1)
+energy = 4.0
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = ExtResource("3_wpcim")
+texture_scale = 2.0
+
+[connection signal="timeout" from="WoodBurnTimer" to="." method="_on_wood_burn_timer_timeout"]
