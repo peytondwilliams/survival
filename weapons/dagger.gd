@@ -28,5 +28,6 @@ func _on_stop_move_timer_timeout():
 
 
 func _on_body_entered(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemy") or body.is_in_group("harvest"):
 		body.take_damage(damage)
+

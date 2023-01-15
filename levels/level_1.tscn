@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccxhn6eacmt1i"]
+[gd_scene load_steps=10 format=3 uid="uid://ccxhn6eacmt1i"]
 
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_25sjl"]
 [ext_resource type="PackedScene" uid="uid://kmvhcp42g0nt" path="res://objects/campfire.tscn" id="1_vk8wx"]
 [ext_resource type="PackedScene" uid="uid://dohprykl7djo6" path="res://mobs/enemy_1.tscn" id="3_0xr55"]
 [ext_resource type="AudioStream" uid="uid://taheeefak81d" path="res://art/Quantum Loop.wav" id="4_mxbph"]
+[ext_resource type="PackedScene" uid="uid://csei6gs2rgvyo" path="res://objects/wood.tscn" id="5_dd4a8"]
+[ext_resource type="PackedScene" uid="uid://cme0x4enf1s5e" path="res://objects/stone.tscn" id="6_p0ugp"]
+[ext_resource type="PackedScene" uid="uid://bo7x68jkpqbft" path="res://objects/ore.tscn" id="7_n5h72"]
+[ext_resource type="PackedScene" uid="uid://dhx4hpf8sa44l" path="res://objects/tree.tscn" id="8_1hqlp"]
+[ext_resource type="PackedScene" uid="uid://dbr1niy42rvmm" path="res://objects/boulder.tscn" id="9_6qt0t"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -33,5 +38,32 @@ autostart = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mxbph")
 autoplay = true
+
+[node name="Wood" parent="." instance=ExtResource("5_dd4a8")]
+position = Vector2(588, 233)
+
+[node name="Stone" parent="." instance=ExtResource("6_p0ugp")]
+position = Vector2(605, 233)
+
+[node name="Ore" parent="." instance=ExtResource("7_n5h72")]
+position = Vector2(696, 237)
+
+[node name="Tree" parent="." instance=ExtResource("8_1hqlp")]
+position = Vector2(476, 196)
+
+[node name="Tree2" parent="." instance=ExtResource("8_1hqlp")]
+position = Vector2(405, 400)
+
+[node name="Tree3" parent="." instance=ExtResource("8_1hqlp")]
+position = Vector2(765, 411)
+
+[node name="Boulder" parent="." instance=ExtResource("9_6qt0t")]
+position = Vector2(473, 434)
+
+[node name="Boulder2" parent="." instance=ExtResource("9_6qt0t")]
+position = Vector2(625, 410)
+
+[node name="Boulder3" parent="." instance=ExtResource("9_6qt0t")]
+position = Vector2(601, 185)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

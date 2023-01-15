@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhx4hpf8sa44l"]
+
+[ext_resource type="PackedScene" uid="uid://dh6m2mqh20a7l" path="res://objects/harvestable.tscn" id="1_gun08"]
+[ext_resource type="Texture2D" uid="uid://87b724wk66s1" path="res://art/survival_assets/survival.png" id="2_hthpa"]
+[ext_resource type="Script" path="res://objects/tree.gd" id="2_rf747"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sblx3"]
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af7gf"]
+atlas = ExtResource("2_hthpa")
+region = Rect2(243, 0, 81, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb58h"]
+atlas = ExtResource("2_hthpa")
+region = Rect2(162, 0, 81, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0srl8"]
+atlas = ExtResource("2_hthpa")
+region = Rect2(81, 0, 81, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8v1c"]
+atlas = ExtResource("2_hthpa")
+region = Rect2(0, 0, 81, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pewn5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af7gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb58h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0srl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8v1c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tree" instance=ExtResource("1_gun08")]
+position = Vector2(-1, -3)
+script = ExtResource("2_rf747")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_sblx3")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, -56)
+frames = SubResource("SpriteFrames_pewn5")
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

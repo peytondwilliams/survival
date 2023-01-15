@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqficjgr64pey"]
+[gd_scene load_steps=32 format=3 uid="uid://cqficjgr64pey"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_5flud"]
 [ext_resource type="Texture2D" uid="uid://dq5y0ghe4m67" path="res://art/RPGMCharacter_v1.0/_down idle.png" id="1_ci7op"]
@@ -194,6 +194,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3ove"]
+radius = 13.5
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-0.5, 2.08165e-12)
 script = ExtResource("1_5flud")
@@ -225,4 +228,11 @@ autostart = true
 wait_time = 0.4
 one_shot = true
 
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_v3ove")
+
 [connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

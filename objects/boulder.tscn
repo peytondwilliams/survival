@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbr1niy42rvmm"]
+
+[ext_resource type="PackedScene" uid="uid://dh6m2mqh20a7l" path="res://objects/harvestable.tscn" id="1_ld8nw"]
+[ext_resource type="Script" path="res://objects/boulder.gd" id="2_kj10d"]
+[ext_resource type="Texture2D" uid="uid://c4x3wiug3llbx" path="res://art/survival_assets/boulder_anim.png" id="3_2ipxn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hynb2"]
+radius = 9.0
+height = 34.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o6ag"]
+atlas = ExtResource("3_2ipxn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8n2w"]
+atlas = ExtResource("3_2ipxn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi0a1"]
+atlas = ExtResource("3_2ipxn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nobqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o6ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8n2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi0a1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Boulder" instance=ExtResource("1_ld8nw")]
+script = ExtResource("2_kj10d")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(7.10543e-15, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hynb2")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, -16)
+frames = SubResource("SpriteFrames_nobqe")
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

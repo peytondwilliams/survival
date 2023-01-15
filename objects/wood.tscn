@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://csei6gs2rgvyo"]
+
+[ext_resource type="PackedScene" uid="uid://du5e40f13nfyb" path="res://objects/loot.tscn" id="1_7d413"]
+[ext_resource type="Texture2D" uid="uid://dfqlsssm3jdfs" path="res://art/PACK/separate files/log.png" id="1_mjvfo"]
+
+[node name="Wood" groups=["wood"] instance=ExtResource("1_7d413")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("1_mjvfo")
