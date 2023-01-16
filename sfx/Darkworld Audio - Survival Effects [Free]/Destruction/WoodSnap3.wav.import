@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fgksq01ypkpk"
+path="res://.godot/imported/WoodSnap3.wav-dbbe1f82f887e3e38172db239dd77717.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Destruction/WoodSnap3.wav"
+dest_files=["res://.godot/imported/WoodSnap3.wav-dbbe1f82f887e3e38172db239dd77717.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

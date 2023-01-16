@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccxhn6eacmt1i"]
+[gd_scene load_steps=17 format=3 uid="uid://ccxhn6eacmt1i"]
 
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_25sjl"]
 [ext_resource type="PackedScene" uid="uid://kmvhcp42g0nt" path="res://objects/campfire.tscn" id="1_vk8wx"]
@@ -9,6 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://bo7x68jkpqbft" path="res://objects/ore.tscn" id="7_n5h72"]
 [ext_resource type="PackedScene" uid="uid://dhx4hpf8sa44l" path="res://objects/tree.tscn" id="8_1hqlp"]
 [ext_resource type="PackedScene" uid="uid://dbr1niy42rvmm" path="res://objects/boulder.tscn" id="9_6qt0t"]
+[ext_resource type="PackedScene" uid="uid://0phha7i44nca" path="res://objects/crafting_log.tscn" id="10_npxbl"]
+[ext_resource type="PackedScene" uid="uid://bt3qu7kgv4gc2" path="res://objects/ingot.tscn" id="11_e3ewu"]
+[ext_resource type="PackedScene" uid="uid://b1j024et7xuo3" path="res://objects/axe_loot.tscn" id="12_j6u0x"]
+[ext_resource type="PackedScene" uid="uid://ddsannbr2wgxg" path="res://objects/dagger_loot.tscn" id="13_6h7o5"]
+[ext_resource type="PackedScene" uid="uid://bwlqhxqekukom" path="res://objects/pickaxe_loot.tscn" id="14_1q4w8"]
+[ext_resource type="PackedScene" uid="uid://df2i7r7cab2vn" path="res://objects/spear_loot.tscn" id="15_hyuxb"]
+[ext_resource type="PackedScene" uid="uid://bg3ileldtio0i" path="res://objects/sword_loot.tscn" id="16_r8dsc"]
 
 [node name="Level1" type="Node2D"]
 modulate = Color(0.419608, 0.419608, 0.419608, 1)
@@ -32,22 +39,15 @@ position = Vector2(602, 292)
 
 [node name="Enemy1" parent="." instance=ExtResource("3_0xr55")]
 position = Vector2(73, 60)
+scale = Vector2(1, 0.999369)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mxbph")
+volume_db = -15.0
 autoplay = true
-
-[node name="Wood" parent="." instance=ExtResource("5_dd4a8")]
-position = Vector2(588, 233)
-
-[node name="Stone" parent="." instance=ExtResource("6_p0ugp")]
-position = Vector2(605, 233)
-
-[node name="Ore" parent="." instance=ExtResource("7_n5h72")]
-position = Vector2(696, 237)
 
 [node name="Tree" parent="." instance=ExtResource("8_1hqlp")]
 position = Vector2(476, 196)
@@ -67,5 +67,44 @@ position = Vector2(625, 410)
 [node name="Boulder3" parent="." instance=ExtResource("9_6qt0t")]
 position = Vector2(601, 185)
 
+[node name="CraftingLog" parent="." instance=ExtResource("10_npxbl")]
+position = Vector2(527, 295)
+
+[node name="Wood" parent="." instance=ExtResource("5_dd4a8")]
+position = Vector2(528, 231)
+
+[node name="Stone" parent="." instance=ExtResource("6_p0ugp")]
+position = Vector2(587, 230)
+
+[node name="Ore" parent="." instance=ExtResource("7_n5h72")]
+position = Vector2(661, 232)
+
+[node name="Ingot" parent="." instance=ExtResource("11_e3ewu")]
+position = Vector2(723, 230)
+
+[node name="AxeLoot" parent="." instance=ExtResource("12_j6u0x")]
+position = Vector2(538, 554)
+
+[node name="DaggerLoot" parent="." instance=ExtResource("13_6h7o5")]
+position = Vector2(597, 549)
+
+[node name="PickaxeLoot" parent="." instance=ExtResource("14_1q4w8")]
+position = Vector2(658, 552)
+
+[node name="SpearLoot" parent="." instance=ExtResource("15_hyuxb")]
+position = Vector2(725, 553)
+
+[node name="SwordLoot" parent="." instance=ExtResource("16_r8dsc")]
+position = Vector2(804, 552)
+
+[node name="MinuteTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[node name="BigSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="extinguish" from="Campfire" to="." method="_on_campfire_extinguish"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="MinuteTimer" to="." method="_on_minute_timer_timeout"]
+[connection signal="timeout" from="BigSpawnTimer" to="." method="_on_big_spawn_timer_timeout"]

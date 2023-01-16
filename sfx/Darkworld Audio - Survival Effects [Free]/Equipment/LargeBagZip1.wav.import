@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cm2bdred0wkby"
+path="res://.godot/imported/LargeBagZip1.wav-f22c67fcfa95a6078e9e2529f4b16fa4.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/LargeBagZip1.wav"
+dest_files=["res://.godot/imported/LargeBagZip1.wav-f22c67fcfa95a6078e9e2529f4b16fa4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

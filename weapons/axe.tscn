@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://bltvtak04nfen"]
+
+[ext_resource type="Texture2D" uid="uid://dloroipsvoy3c" path="res://art/oubliette_weapons - free/spr_wep_iron_axe_1.png" id="1_0230t"]
+[ext_resource type="Script" path="res://weapons/axe.gd" id="1_ch6no"]
+[ext_resource type="AudioStream" uid="uid://b4u8i5ln0w4rf" path="res://sfx/Hit and Punch Preview/AUDIO/PUNCH_DESIGNED_HEAVY_86.wav" id="3_7g3vh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kb7vx"]
+radius = 9.0
+height = 38.0
+
+[sub_resource type="Animation" id="Animation_7b4pr"]
+resource_name = "Attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fmo3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en3w3"]
+_data = {
+"Attack": SubResource("Animation_7b4pr"),
+"RESET": SubResource("Animation_fmo3h")
+}
+
+[node name="Axe" type="Area2D"]
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_ch6no")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.153846, -22.9231)
+rotation = -1.5708
+texture = ExtResource("1_0230t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.153846, -22.7692)
+shape = SubResource("CapsuleShape2D_kb7vx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_en3w3")
+}
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7g3vh")
+volume_db = -20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_deletetimer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

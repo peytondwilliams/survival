@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bqehjvy6hnn1u"
+path="res://.godot/imported/DesignedGunSoundReload4.wav-243390b625e44a61e3dad7ec52136373.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/DesignedGunSoundReload4.wav"
+dest_files=["res://.godot/imported/DesignedGunSoundReload4.wav-243390b625e44a61e3dad7ec52136373.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

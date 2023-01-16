@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dexmnqwsdrovi"
+path="res://.godot/imported/LighterFluid2.wav-672f4b5e6de3722ee4593c62a12fc453.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/LighterFluid2.wav"
+dest_files=["res://.godot/imported/LighterFluid2.wav-672f4b5e6de3722ee4593c62a12fc453.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

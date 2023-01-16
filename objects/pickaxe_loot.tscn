@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwlqhxqekukom"]
+
+[ext_resource type="PackedScene" uid="uid://du5e40f13nfyb" path="res://objects/loot.tscn" id="1_c5vkj"]
+[ext_resource type="Texture2D" uid="uid://ccrugnhubgv4t" path="res://art/oubliette_weapons - free/spr_wep_iron_scythe_1.png" id="2_6emt3"]
+
+[node name="PickaxeLoot" instance=ExtResource("1_c5vkj")]
+item_name = "pickaxe"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -1)
+texture = ExtResource("2_6emt3")

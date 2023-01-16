@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhx4hpf8sa44l"]
+[gd_scene load_steps=11 format=3 uid="uid://dhx4hpf8sa44l"]
 
 [ext_resource type="PackedScene" uid="uid://dh6m2mqh20a7l" path="res://objects/harvestable.tscn" id="1_gun08"]
 [ext_resource type="Texture2D" uid="uid://87b724wk66s1" path="res://art/survival_assets/survival.png" id="2_hthpa"]
 [ext_resource type="Script" path="res://objects/tree.gd" id="2_rf747"]
+[ext_resource type="AudioStream" uid="uid://dpy074c7vlp2w" path="res://sfx/Darkworld Audio - Survival Effects [Free]/Tools/DesignedAxe1.wav" id="4_hm6io"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sblx3"]
 height = 20.0
@@ -53,5 +54,9 @@ shape = SubResource("CapsuleShape2D_sblx3")
 [node name="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(0, -56)
 frames = SubResource("SpriteFrames_pewn5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("4_hm6io")
+volume_db = -10.0
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

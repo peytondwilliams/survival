@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfqlsssm3jdfs" path="res://art/PACK/separate files/log.png" id="1_mjvfo"]
 
 [node name="Wood" groups=["wood"] instance=ExtResource("1_7d413")]
+item_name = "wood"
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_mjvfo")

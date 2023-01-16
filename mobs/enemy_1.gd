@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 60.0
+var SPEED = 40.0
 
-var health = 10
+var health = 20
 var attack = 5
 
 func init(new_health):
@@ -30,6 +30,14 @@ func _physics_process(delta):
 			collider.take_damage(attack)
 
 func take_damage(hurt_damage):
+	$AudioStreamPlayer.play()
 	health -= hurt_damage
 	if health <= 0:
+		$AnimationPlayer.play("Death")
+		SPEED = 0
+		$DeathTimer.start()
+
+
+
+func _on_death_timer_timeout():
 		queue_free()

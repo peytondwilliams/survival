@@ -2,12 +2,12 @@ extends Area2D
 
 const SPEED = 100
 
-
 var damage = 10
 var moving = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer.play()
 	look_at(get_global_mouse_position())
 	rotation += PI/2
 	$AnimationPlayer.play("Attack")
@@ -15,12 +15,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	if moving:
 		position += Vector2.ONE.rotated(rotation - 3* PI /4) * SPEED * delta
 
 
 func _on_body_entered(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("enemy") or body.is_in_group("harvest"):
 		body.take_damage(damage)
 
 

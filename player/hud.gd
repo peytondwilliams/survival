@@ -24,7 +24,7 @@ func _on_health_change(change):
 
 func _on_inventory_change(change):
 	inventory = change
-	$InventoryLabel.text = "wood: %d\nstone: %d\nore:     %d" % [inventory["wood"], inventory["stone"], inventory["ore"]]
+	$InventoryLabel.text = "wood: %d\nstone: %d\nore:     %d\ningot:  %d" % [inventory["wood"], inventory["stone"], inventory["ore"], inventory["ingot"]]
 
 func _on_select_change(change):
 	$LootSelectLabel.text = change

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1ert2po0a4gx"
+path="res://.godot/imported/FoodPackagingNoodles4.wav-6f441218c6d4faaa4823d1e453f83789.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Food/FoodPackagingNoodles4.wav"
+dest_files=["res://.godot/imported/FoodPackagingNoodles4.wav-6f441218c6d4faaa4823d1e453f83789.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

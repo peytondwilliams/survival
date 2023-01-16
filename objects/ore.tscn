@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7fhuave023jw" path="res://art/PACK/separate files/iron_ore.png" id="2_n87iu"]
 
 [node name="Ore" groups=["ore"] instance=ExtResource("1_my3mb")]
+item_name = "ore"
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -4)

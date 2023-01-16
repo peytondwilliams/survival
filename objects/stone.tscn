@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bx0w65q81bqnt" path="res://art/PACK/separate files/stone.png" id="2_mls77"]
 
 [node name="Stone" groups=["stone"] instance=ExtResource("1_xc4md")]
+item_name = "stone"
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -4)

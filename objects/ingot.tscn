@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3qu7kgv4gc2"]
+
+[ext_resource type="PackedScene" uid="uid://du5e40f13nfyb" path="res://objects/loot.tscn" id="1_fosqy"]
+[ext_resource type="Texture2D" uid="uid://bpb3hp77lersn" path="res://art/PACK/separate files/iron_ingot.png" id="2_ky1tx"]
+
+[node name="Ingot" groups=["ingot"] instance=ExtResource("1_fosqy")]
+item_name = "ingot"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ky1tx")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c6pu7ob7q4q71"
+path="res://.godot/imported/DesignedGunSoundHandling1.wav-841f59b0b29678a3cc01c3ab8ac4e19f.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/DesignedGunSoundHandling1.wav"
+dest_files=["res://.godot/imported/DesignedGunSoundHandling1.wav-841f59b0b29678a3cc01c3ab8ac4e19f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

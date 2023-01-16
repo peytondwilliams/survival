@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rco2enkqxnxx"
+path="res://.godot/imported/EatingFood3.wav-ad51f9cdbb4e913893cdd71cfd5acace.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Food/EatingFood3.wav"
+dest_files=["res://.godot/imported/EatingFood3.wav-ad51f9cdbb4e913893cdd71cfd5acace.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

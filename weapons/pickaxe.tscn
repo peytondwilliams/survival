@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2smlqxqg2v8t"]
+
+[ext_resource type="Script" path="res://weapons/pickaxe.gd" id="1_1ocdr"]
+[ext_resource type="Texture2D" uid="uid://ccrugnhubgv4t" path="res://art/oubliette_weapons - free/spr_wep_iron_scythe_1.png" id="1_m746e"]
+[ext_resource type="AudioStream" uid="uid://e4w2t030cl45" path="res://sfx/deep sci fi stinger 5.wav" id="3_30b4u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oiuoj"]
+radius = 9.0
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_ehmm6"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qnjbj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_atjau"]
+_data = {
+"Attack": SubResource("Animation_ehmm6"),
+"RESET": SubResource("Animation_qnjbj")
+}
+
+[node name="Pickaxe" type="Area2D" groups=["weapon"]]
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_1ocdr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oiuoj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+rotation = 3.14159
+texture = ExtResource("1_m746e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_atjau")
+}
+
+[node name="DeleteTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_30b4u")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

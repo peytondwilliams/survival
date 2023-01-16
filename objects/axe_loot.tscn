@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1j024et7xuo3"]
+
+[ext_resource type="PackedScene" uid="uid://du5e40f13nfyb" path="res://objects/loot.tscn" id="1_2dyoc"]
+[ext_resource type="Texture2D" uid="uid://dloroipsvoy3c" path="res://art/oubliette_weapons - free/spr_wep_iron_axe_1.png" id="2_shrrw"]
+
+[node name="AxeLoot" instance=ExtResource("1_2dyoc")]
+item_name = "axe"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-1, -2)
+texture = ExtResource("2_shrrw")

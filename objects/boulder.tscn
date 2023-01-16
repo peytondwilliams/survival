@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbr1niy42rvmm"]
+[gd_scene load_steps=10 format=3 uid="uid://dbr1niy42rvmm"]
 
 [ext_resource type="PackedScene" uid="uid://dh6m2mqh20a7l" path="res://objects/harvestable.tscn" id="1_ld8nw"]
 [ext_resource type="Script" path="res://objects/boulder.gd" id="2_kj10d"]
 [ext_resource type="Texture2D" uid="uid://c4x3wiug3llbx" path="res://art/survival_assets/boulder_anim.png" id="3_2ipxn"]
+[ext_resource type="AudioStream" uid="uid://b6nx21ty8co3m" path="res://sfx/Darkworld Audio - Survival Effects [Free]/Tools/DesignedPickaxe1.wav" id="4_lrbq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hynb2"]
 radius = 9.0
@@ -48,5 +49,9 @@ shape = SubResource("CapsuleShape2D_hynb2")
 [node name="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(0, -16)
 frames = SubResource("SpriteFrames_nobqe")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("4_lrbq6")
+volume_db = -15.0
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

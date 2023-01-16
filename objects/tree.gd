@@ -1,7 +1,8 @@
 extends StaticBody2D
 
 const WOOD = preload("res://objects/wood.tscn")
-var health = 20
+var health = 50
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,6 +12,7 @@ func _process(delta):
 	pass
 
 func take_damage(damage):
+	$AudioStreamPlayer.play()
 	var prev_health = health
 	health -= damage
 	$AnimatedSprite2D.frame = int(4 - floor(health/5))

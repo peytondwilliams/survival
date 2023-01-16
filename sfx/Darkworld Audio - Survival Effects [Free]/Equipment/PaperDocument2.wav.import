@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnfnk4eej7ujq"
+path="res://.godot/imported/PaperDocument2.wav-cac2d83035f61cbf02d453f56c3f52c7.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/PaperDocument2.wav"
+dest_files=["res://.godot/imported/PaperDocument2.wav-cac2d83035f61cbf02d453f56c3f52c7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

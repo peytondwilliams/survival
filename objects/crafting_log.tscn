@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://0phha7i44nca"]
+
+[ext_resource type="Texture2D" uid="uid://d2iqc3roishut" path="res://art/survival_assets/crafting_log.png" id="1_bfdko"]
+[ext_resource type="Script" path="res://objects/crafting_log.gd" id="1_h57ea"]
+[ext_resource type="AudioStream" uid="uid://bujqfdjs6r8aw" path="res://sfx/Darkworld Audio - Survival Effects [Free]/Environment/WoodLogHandling1.wav" id="3_hc4y6"]
+[ext_resource type="AudioStream" uid="uid://cqj5wsj64v6cm" path="res://sfx/RPG_Essentials_Free/10_UI_Menu_SFX/033_Denied_03.wav" id="4_80e0l"]
+[ext_resource type="AudioStream" uid="uid://dyfjke1i5geym" path="res://sfx/RPG_Essentials_Free/10_UI_Menu_SFX/070_Equip_10.wav" id="4_g8u1h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ud524"]
+radius = 4.0
+height = 62.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kutmg"]
+radius = 14.0
+height = 74.0
+
+[node name="CraftingLog" type="StaticBody2D" groups=["craft"]]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_h57ea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.10543e-15, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ud524")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_bfdko")
+
+[node name="Point1" type="Marker2D" parent="."]
+position = Vector2(-23, -8)
+
+[node name="Point2" type="Marker2D" parent="."]
+position = Vector2(-2, -8)
+
+[node name="Point3" type="Marker2D" parent="."]
+position = Vector2(19, -8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kutmg")
+
+[node name="PlaceAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hc4y6")
+volume_db = -10.0
+
+[node name="CraftAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_g8u1h")
+volume_db = -10.0
+
+[node name="BadCraftAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_80e0l")
+volume_db = -10.0

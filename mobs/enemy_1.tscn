@@ -1,71 +1,124 @@
-[gd_scene load_steps=11 format=3 uid="uid://dohprykl7djo6"]
+[gd_scene load_steps=15 format=3 uid="uid://dohprykl7djo6"]
 
 [ext_resource type="Script" path="res://mobs/enemy_1.gd" id="1_tgat8"]
 [ext_resource type="Texture2D" uid="uid://ckcxbicn6q0vr" path="res://art/Small Monster/small morun.png" id="2_mq23e"]
+[ext_resource type="AudioStream" uid="uid://b0aqkot0cc7ru" path="res://sfx/Hit and Punch Preview/AUDIO/PUNCH_SQUELCH_HEAVY_05.wav" id="3_glxky"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sd27o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqfwt"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 0, 32, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hx70s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdpej"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 117, 32, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ouxxt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_51qjl"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 39, 32, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_edvxj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn4ce"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 195, 32, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_id0bv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6dyt"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 78, 32, 39)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vs4pr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_svcaf"]
 atlas = ExtResource("2_mq23e")
 region = Rect2(0, 156, 32, 39)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ebs7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6ysd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sd27o")
+"texture": SubResource("AtlasTexture_fqfwt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hx70s")
+"texture": SubResource("AtlasTexture_jdpej")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ouxxt")
+"texture": SubResource("AtlasTexture_51qjl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_edvxj")
+"texture": SubResource("AtlasTexture_xn4ce")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_id0bv")
+"texture": SubResource("AtlasTexture_p6dyt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vs4pr")
+"texture": SubResource("AtlasTexture_svcaf")
 }],
 "loop": true,
 "name": &"run",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k3gh"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_teosw"]
 radius = 2.0
 height = 8.0
+
+[sub_resource type="Animation" id="Animation_8hw5q"]
+resource_name = "Death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ahx48"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5iqc"]
+_data = {
+"Death": SubResource("Animation_8hw5q"),
+"RESET": SubResource("Animation_ahx48")
+}
 
 [node name="Enemy1" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_tgat8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -17)
-frames = SubResource("SpriteFrames_5ebs7")
+frames = SubResource("SpriteFrames_t6ysd")
 animation = &"run"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_5k3gh")
+shape = SubResource("CapsuleShape2D_teosw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g5iqc")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_glxky")
+volume_db = -22.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

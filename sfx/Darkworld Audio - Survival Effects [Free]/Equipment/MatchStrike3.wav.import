@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bimotcctvg7pn"
+path="res://.godot/imported/MatchStrike3.wav-19b9ca3186f20a7ae104e101c9d7b3a5.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/MatchStrike3.wav"
+dest_files=["res://.godot/imported/MatchStrike3.wav-19b9ca3186f20a7ae104e101c9d7b3a5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

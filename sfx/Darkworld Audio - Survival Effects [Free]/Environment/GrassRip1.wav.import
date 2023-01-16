@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crkygsgi1tlbu"
+path="res://.godot/imported/GrassRip1.wav-e7d6dfe9dd3cbf34181b783e50fe9b74.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Environment/GrassRip1.wav"
+dest_files=["res://.godot/imported/GrassRip1.wav-e7d6dfe9dd3cbf34181b783e50fe9b74.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

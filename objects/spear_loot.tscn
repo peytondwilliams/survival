@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://df2i7r7cab2vn"]
+
+[ext_resource type="PackedScene" uid="uid://du5e40f13nfyb" path="res://objects/loot.tscn" id="1_4ctk8"]
+[ext_resource type="Texture2D" uid="uid://c146vp6agufm7" path="res://art/oubliette_weapons - free/spr_wep_brnz_spear_0.png" id="2_ka8ee"]
+
+[node name="SpearLoot" instance=ExtResource("1_4ctk8")]
+item_name = "spear"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -2)
+texture = ExtResource("2_ka8ee")

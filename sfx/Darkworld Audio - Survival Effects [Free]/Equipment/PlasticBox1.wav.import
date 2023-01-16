@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drngbv2n33diu"
+path="res://.godot/imported/PlasticBox1.wav-807cf326747e4f956ffb7b966e38e208.sample"
+
+[deps]
+
+source_file="res://sfx/Darkworld Audio - Survival Effects [Free]/Equipment/PlasticBox1.wav"
+dest_files=["res://.godot/imported/PlasticBox1.wav-807cf326747e4f956ffb7b966e38e208.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
