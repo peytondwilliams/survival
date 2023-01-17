@@ -1,6 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://iq5kiokq5hmu"]
+[gd_scene load_steps=18 format=3 uid="uid://iq5kiokq5hmu"]
 
 [ext_resource type="Script" path="res://player/hud.gd" id="1_ejpua"]
+[ext_resource type="PackedScene" uid="uid://csei6gs2rgvyo" path="res://objects/wood.tscn" id="2_s1fr6"]
+[ext_resource type="PackedScene" uid="uid://cme0x4enf1s5e" path="res://objects/stone.tscn" id="3_ehpo8"]
+[ext_resource type="PackedScene" uid="uid://bo7x68jkpqbft" path="res://objects/ore.tscn" id="4_ccqn7"]
+[ext_resource type="PackedScene" uid="uid://bt3qu7kgv4gc2" path="res://objects/ingot.tscn" id="5_cwj4j"]
+[ext_resource type="Texture2D" uid="uid://kivgrtbtyn6x" path="res://art/Keys/Space-Key.png" id="6_2ireo"]
+[ext_resource type="Texture2D" uid="uid://dy7ea0lc63ouu" path="res://art/Keys/C-Key.png" id="7_2mvyy"]
+[ext_resource type="Texture2D" uid="uid://lfmi4l5fgxo" path="res://art/Keys/E-Key.png" id="8_jf3xe"]
+[ext_resource type="Texture2D" uid="uid://djgaegfo6ixhe" path="res://art/Keys/Q-Key.png" id="9_qec6o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibgnf"]
+atlas = ExtResource("6_2ireo")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovwde"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibgnf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdft1"]
+atlas = ExtResource("7_2mvyy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ib5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdft1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu4s1"]
+atlas = ExtResource("8_jf3xe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfnt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu4s1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osu7d"]
+atlas = ExtResource("9_qec6o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lh2e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osu7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ejpua")
@@ -31,6 +99,13 @@ offset_bottom = 105.0
 grow_horizontal = 2
 color = Color(0.682353, 0.0823529, 0.298039, 1)
 
+[node name="SanityBar" type="ColorRect" parent="."]
+offset_left = 764.0
+offset_top = 114.0
+offset_right = 1164.0
+offset_bottom = 129.0
+color = Color(0.247059, 0.0509804, 0.521569, 1)
+
 [node name="InventoryLabel" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -48,15 +123,65 @@ stone: 0
 ore:     0
 ingot:  0"
 
+[node name="InventoryLabel2" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1913.0
+offset_top = -199.0
+offset_right = -1651.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Pick Up: 
+Drop Weapon:
+Use Selected:
+Change Selected:"
+
 [node name="LootSelectLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -48.0
-offset_right = 43.0
+offset_left = 715.0
+offset_top = -264.0
+offset_right = 948.0
+offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "wood"
+text = "Selected: wood"
+
+[node name="Wood" parent="." instance=ExtResource("2_s1fr6")]
+position = Vector2(1767, 929)
+scale = Vector2(3, 3)
+
+[node name="Stone" parent="." instance=ExtResource("3_ehpo8")]
+position = Vector2(1767, 975)
+scale = Vector2(3, 3)
+
+[node name="Ore" parent="." instance=ExtResource("4_ccqn7")]
+position = Vector2(1771, 1020)
+scale = Vector2(3, 3)
+
+[node name="Ingot" parent="." instance=ExtResource("5_cwj4j")]
+position = Vector2(1766, 1068)
+scale = Vector2(3, 3)
+
+[node name="Space-key" type="AnimatedSprite2D" parent="."]
+position = Vector2(171, 904)
+frames = SubResource("SpriteFrames_ovwde")
+
+[node name="Space-key2" type="AnimatedSprite2D" parent="."]
+position = Vector2(250, 952)
+frames = SubResource("SpriteFrames_1ib5q")
+
+[node name="Space-key3" type="AnimatedSprite2D" parent="."]
+position = Vector2(236, 999)
+frames = SubResource("SpriteFrames_mfnt3")
+
+[node name="Space-key4" type="AnimatedSprite2D" parent="."]
+position = Vector2(293, 1046)
+frames = SubResource("SpriteFrames_lh2e5")

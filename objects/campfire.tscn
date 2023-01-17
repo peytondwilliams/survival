@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://kmvhcp42g0nt"]
+[gd_scene load_steps=13 format=3 uid="uid://kmvhcp42g0nt"]
 
 [ext_resource type="Texture2D" uid="uid://4i5q5uc033fy" path="res://art/Campfire36.png" id="1_a2aqn"]
 [ext_resource type="Script" path="res://objects/campfire.gd" id="1_hl8vp"]
 [ext_resource type="Texture2D" uid="uid://cakgi0k70qj6u" path="res://art/light2.jpeg" id="3_wpcim"]
+[ext_resource type="AudioStream" uid="uid://chjqk0yfvpdhu" path="res://sfx/campfire-crackling-fireplace-sound-119594.mp3" id="4_oinq5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwc42"]
 radius = 4.0
@@ -92,5 +93,11 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LitArea"]
 shape = SubResource("CircleShape2D_bbv8u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oinq5")
+volume_db = -10.0
+autoplay = true
+max_distance = 400.0
 
 [connection signal="timeout" from="WoodBurnTimer" to="." method="_on_wood_burn_timer_timeout"]

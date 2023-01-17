@@ -53,4 +53,4 @@ volume_db = -10.0
 
 [node name="BadCraftAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_80e0l")
-volume_db = -10.0
+volume_db = -5.0

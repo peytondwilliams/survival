@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://cjgc3d7iqyqr"]
+
+[ext_resource type="Script" path="res://mobs/enemy_2.gd" id="1_0hkh3"]
+[ext_resource type="Texture2D" uid="uid://d2pmi73efnf0x" path="res://art/tooth walker/tooth walker sprite-Sheet.png" id="1_8mclf"]
+[ext_resource type="AudioStream" uid="uid://d3556jdwdtxjc" path="res://sfx/Hit and Punch Preview/AUDIO/PUNCH_SQUELCH_HEAVY_01.wav" id="1_b36co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtwfv"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gjhp"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5ln4"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obsja"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i4u6"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ne2l"]
+atlas = ExtResource("1_8mclf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmbtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtwfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gjhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5ln4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obsja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i4u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ne2l")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k6hyo"]
+radius = 8.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_fdv0j"]
+resource_name = "Death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yjlss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76b00"]
+_data = {
+"Death": SubResource("Animation_fdv0j"),
+"RESET": SubResource("Animation_yjlss")
+}
+
+[node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_0hkh3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -27)
+frames = SubResource("SpriteFrames_cmbtu")
+animation = &"run"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4)
+shape = SubResource("CapsuleShape2D_k6hyo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_76b00")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_b36co")
+volume_db = -22.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

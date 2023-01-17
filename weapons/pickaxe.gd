@@ -3,7 +3,7 @@ extends Area2D
 const ROT_SPEED = PI * 4
 const LIN_SPEED = 200
 
-var damage = 10
+var damage = 11
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

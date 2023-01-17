@@ -1,18 +1,17 @@
 extends CharacterBody2D
 
-var SPEED = 40.0
+var SPEED = 32.0
 
 var health = 20
 var attack = 5
+
+var player_pos = Vector2.ZERO
 
 func init(new_health):
 	health = new_health
 
 func _physics_process(delta):
-	var player = Globals.player
-
-	var target_pos = player.position
-	var pos_diff = target_pos - position
+	var pos_diff = player_pos - position
 	pos_diff = pos_diff.normalized()
 
 	velocity = pos_diff * SPEED
@@ -37,7 +36,8 @@ func take_damage(hurt_damage):
 		SPEED = 0
 		$DeathTimer.start()
 
-
+func receive_player_pos(pos):
+	player_pos = pos
 
 func _on_death_timer_timeout():
 		queue_free()

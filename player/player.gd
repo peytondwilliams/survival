@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
 signal health_changed(change)
+signal sanity_val(sanity)
 signal inventory_changed(inv)
 signal selected_loot_changed(loot_sel)
+signal current_pos(pos)
+signal die()
 
 const SPEED = 85.0
 
@@ -25,6 +28,8 @@ const WEAPON_LOOT_DICT = {
 const INGOT = preload("res://objects/ingot.tscn")
 const INVENTORY_MAX = 3
 
+const SANITY_PER_SEC = 13
+
 var nearby_loot = []
 var nearby_loot_count = 0
 
@@ -45,6 +50,7 @@ var weapon = "dagger"
 var selected_loot = "wood"
 
 var health = 100
+var sanity = 100
 
 func _physics_process(delta):
 	var horz_dir = Input.get_axis("action_left", "action_right")
@@ -97,18 +103,21 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("action_drop_weapon"):
 		drop_weapon()
 
-	check_in_light()
+	check_in_light(delta)
 
 	move_and_slide()
 
+	emit_signal("current_pos", position)
+
 func drop_weapon():
 	if weapon == "empty":
-		pass
+		return
 
 	var weapon_loot = WEAPON_LOOT_DICT[weapon].instantiate()
 	get_parent().add_child(weapon_loot)
 	weapon_loot.position = position
 	weapon = "empty"
+	$UnequipAudio.play()
 
 
 func pickup():
@@ -129,6 +138,7 @@ func pickup():
 			inventory[loot] += 1
 			closest_loot.queue_free()
 			inventory_update()
+			$PickupAudio.play()
 			return true
 
 	for loot in ["dagger", "spear", "sword", "axe", "pickaxe"]:
@@ -137,6 +147,7 @@ func pickup():
 				drop_weapon()
 			weapon = loot
 			closest_loot.queue_free()
+			$PickupAudio.play()
 			return true
 
 
@@ -169,6 +180,9 @@ func take_damage(hurt_damage):
 		health -= hurt_damage
 		emit_signal("health_changed", hurt_damage)
 
+		if (health <= 0):
+			emit_signal("die")
+
 func inventory_update():
 	emit_signal("inventory_changed", inventory)
 
@@ -178,6 +192,8 @@ func add_to_fire():
 		inventory["wood"] -= 1
 	elif selected_loot == "stone" and inventory["stone"] > 0:
 		$GlowLight.enabled = true
+		if $AnimationPlayer.is_playing():
+			$AnimationPlayer.stop(true)
 		$AnimationPlayer.play("glow_reduce")
 		inventory["stone"] -= 1
 		$GlowTimer.start()
@@ -186,7 +202,10 @@ func add_to_fire():
 		var ingot = INGOT.instantiate()
 		get_parent().add_child(ingot)
 		ingot.position = position
+	else:
+		return
 	# INGOT add to fire?
+	$AddToFireAudio.play()
 	inventory_update() #
 
 func add_to_craft():
@@ -195,12 +214,22 @@ func add_to_craft():
 		inventory[selected_loot] -= 1
 		inventory_update() #
 
-func check_in_light():
+func check_in_light(delta):
 	if ($GlowTimer.is_stopped() and nearby_fire_light == null and $DarknessDamageTimer.is_stopped()):
-		$DarknessDamageTimer.start()
-		$DarknessDamageAudio.play()
-		health -= 3
-		emit_signal("health_changed", 3)
+		if (sanity > 0):
+			sanity -= delta * SANITY_PER_SEC
+			sanity = clamp(sanity, 0, 100)
+			emit_signal("sanity_val", sanity)
+		if (sanity <= 0):
+			$DarknessDamageTimer.start()
+			$DarknessDamageAudio.play()
+			health -= 3
+			emit_signal("health_changed", 3)
+	elif (nearby_fire_light != null):
+		sanity += delta * SANITY_PER_SEC
+		sanity = clamp(sanity, 0, 100)
+		emit_signal("sanity_val", sanity)
+
 
 
 func scroll():

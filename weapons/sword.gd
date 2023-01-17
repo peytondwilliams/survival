@@ -2,7 +2,7 @@ extends Area2D
 
 const ROT_SPEED = PI * 3.3
 
-var damage = 20
+var damage = 35
 var moving = true
 
 # Called when the node enters the scene tree for the first time.

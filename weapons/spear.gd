@@ -2,7 +2,7 @@ extends Area2D
 
 const SPEED = 100
 
-var damage = 10
+var damage = 20
 var moving = true
 
 # Called when the node enters the scene tree for the first time.
