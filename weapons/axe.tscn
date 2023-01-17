@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://weapons/axe.gd" id="1_ch6no"]
 [ext_resource type="AudioStream" uid="uid://b4u8i5ln0w4rf" path="res://sfx/Hit and Punch Preview/AUDIO/PUNCH_DESIGNED_HEAVY_86.wav" id="3_7g3vh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kb7vx"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxrrk"]
 radius = 9.0
 height = 38.0
 
-[sub_resource type="Animation" id="Animation_7b4pr"]
+[sub_resource type="Animation" id="Animation_hwaya"]
 resource_name = "Attack"
 length = 0.6
 tracks/0/type = "value"
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fmo3h"]
+[sub_resource type="Animation" id="Animation_vgnrr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,10 +39,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_en3w3"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_huyxi"]
 _data = {
-"Attack": SubResource("Animation_7b4pr"),
-"RESET": SubResource("Animation_fmo3h")
+"Attack": SubResource("Animation_hwaya"),
+"RESET": SubResource("Animation_vgnrr")
 }
 
 [node name="Axe" type="Area2D"]
@@ -56,11 +56,11 @@ texture = ExtResource("1_0230t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.153846, -22.7692)
-shape = SubResource("CapsuleShape2D_kb7vx")
+shape = SubResource("CapsuleShape2D_fxrrk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_en3w3")
+"": SubResource("AnimationLibrary_huyxi")
 }
 
 [node name="DeleteTimer" type="Timer" parent="."]

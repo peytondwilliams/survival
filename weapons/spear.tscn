@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://weapons/DeleteTimer.gd" id="3_ywkg3"]
 [ext_resource type="AudioStream" uid="uid://bpi7gy5q2ud75" path="res://sfx/Hit and Punch Preview/AUDIO/PUNCH_DESIGNED_HEAVY_23.wav" id="4_elbrs"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cjowh"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dmdk4"]
 radius = 3.0
 height = 32.0
 
-[sub_resource type="Animation" id="Animation_o1jk5"]
+[sub_resource type="Animation" id="Animation_iv4sg"]
 resource_name = "Attack"
 length = 0.7
 tracks/0/type = "value"
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dulet"]
+[sub_resource type="Animation" id="Animation_r3uq6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -64,10 +64,10 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qqfh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlav8"]
 _data = {
-"Attack": SubResource("Animation_o1jk5"),
-"RESET": SubResource("Animation_dulet")
+"Attack": SubResource("Animation_iv4sg"),
+"RESET": SubResource("Animation_r3uq6")
 }
 
 [node name="Spear" type="Area2D"]
@@ -76,7 +76,7 @@ script = ExtResource("1_wqkbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17)
-shape = SubResource("CapsuleShape2D_cjowh")
+shape = SubResource("CapsuleShape2D_dmdk4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -16)
@@ -86,7 +86,7 @@ texture = ExtResource("1_po4ps")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5qqfh")
+"": SubResource("AnimationLibrary_dlav8")
 }
 
 [node name="DeleteTimer" type="Timer" parent="."]

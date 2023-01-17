@@ -38,3 +38,6 @@ func _on_selected_loot_changed(loot_sel):
 func _on_player_sanity_val(new_sanity):
 	sanity = new_sanity
 	$SanityBar.size.x = sanity * 4
+
+func _on_player_interact(visible):
+	$UseKey.visible = visible

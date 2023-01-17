@@ -6,6 +6,7 @@ signal inventory_changed(inv)
 signal selected_loot_changed(loot_sel)
 signal current_pos(pos)
 signal die()
+signal interact(visible)
 
 const SPEED = 85.0
 
@@ -269,16 +270,20 @@ func _on_pickup_area_area_exited(area):
 
 func _on_pickup_area_body_entered(body):
 	if body.is_in_group("fire"):
+		emit_signal("interact", true)
 		nearby_fire = body
 	if body.is_in_group("craft"):
+		emit_signal("interact", true)
 		nearby_craft = body
 
 
 
 func _on_pickup_area_body_exited(body):
 	if body.is_in_group("fire"):
+		emit_signal("interact", false)
 		nearby_fire = null
 	if body.is_in_group("craft"):
+		emit_signal("interact", false)
 		nearby_craft = null
 
 func _on_glow_timer_timeout():

@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://ccrugnhubgv4t" path="res://art/oubliette_weapons - free/spr_wep_iron_scythe_1.png" id="1_m746e"]
 [ext_resource type="AudioStream" uid="uid://e4w2t030cl45" path="res://sfx/deep sci fi stinger 5.wav" id="3_30b4u"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oiuoj"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nh3q5"]
 radius = 9.0
 height = 36.0
 
-[sub_resource type="Animation" id="Animation_ehmm6"]
+[sub_resource type="Animation" id="Animation_dcr6k"]
 resource_name = "Attack"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_qnjbj"]
+[sub_resource type="Animation" id="Animation_mrfao"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,10 +38,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_atjau"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0t04"]
 _data = {
-"Attack": SubResource("Animation_ehmm6"),
-"RESET": SubResource("Animation_qnjbj")
+"Attack": SubResource("Animation_dcr6k"),
+"RESET": SubResource("Animation_mrfao")
 }
 
 [node name="Pickaxe" type="Area2D" groups=["weapon"]]
@@ -51,7 +51,7 @@ script = ExtResource("1_1ocdr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -16)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_oiuoj")
+shape = SubResource("CapsuleShape2D_nh3q5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -17)
@@ -60,7 +60,7 @@ texture = ExtResource("1_m746e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_atjau")
+"": SubResource("AnimationLibrary_x0t04")
 }
 
 [node name="DeleteTimer" type="Timer" parent="."]

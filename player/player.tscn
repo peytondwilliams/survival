@@ -269,7 +269,6 @@ _data = {
 radius = 10.5
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(-0.5, 2.08165e-12)
 collision_mask = 5
 script = ExtResource("1_5flud")
 
@@ -354,6 +353,7 @@ stream = ExtResource("12_t33xm")
 volume_db = -10.0
 
 [connection signal="health_changed" from="." to="HUD" method="_on_health_changed"]
+[connection signal="interact" from="." to="HUD" method="_on_player_interact"]
 [connection signal="inventory_changed" from="." to="HUD" method="_on_inventory_changed"]
 [connection signal="sanity_val" from="." to="HUD" method="_on_player_sanity_val"]
 [connection signal="selected_loot_changed" from="." to="HUD" method="_on_selected_loot_changed"]

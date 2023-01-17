@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://pn78frsda48" path="res://art/oubliette_weapons - free/spr_wep_iron_daggers_0.png" id="1_8e5gy"]
 [ext_resource type="AudioStream" uid="uid://dr0irctu55q28" path="res://sfx/Hit and Punch Preview/AUDIO/WHOOSH_ARM_SWING_01.wav" id="3_o478v"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shi7h"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34vxi"]
 radius = 3.0
 height = 24.513
 
-[sub_resource type="Animation" id="Animation_btqgc"]
+[sub_resource type="Animation" id="Animation_yxcow"]
 resource_name = "Attack"
 length = 0.6
 tracks/0/type = "value"
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_8ce7u"]
+[sub_resource type="Animation" id="Animation_xijsy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -39,10 +39,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3bpi5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdaq7"]
 _data = {
-"Attack": SubResource("Animation_btqgc"),
-"RESET": SubResource("Animation_8ce7u")
+"Attack": SubResource("Animation_yxcow"),
+"RESET": SubResource("Animation_xijsy")
 }
 
 [node name="Dagger" type="Area2D"]
@@ -52,7 +52,7 @@ script = ExtResource("1_1puek")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12.6667, -11.3333)
 rotation = -0.785398
-shape = SubResource("CapsuleShape2D_shi7h")
+shape = SubResource("CapsuleShape2D_34vxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-15.7353, -14.6372)
@@ -61,7 +61,7 @@ texture = ExtResource("1_8e5gy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_3bpi5")
+"": SubResource("AnimationLibrary_wdaq7")
 }
 
 [node name="DeleteTimer" type="Timer" parent="."]
