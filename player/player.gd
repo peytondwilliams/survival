@@ -226,6 +226,9 @@ func check_in_light(delta):
 			$DarknessDamageAudio.play()
 			health -= 3
 			emit_signal("health_changed", 3)
+
+			if (health <= 0):
+				emit_signal("die")
 	elif (nearby_fire_light != null):
 		sanity += delta * SANITY_PER_SEC
 		sanity = clamp(sanity, 0, 100)
